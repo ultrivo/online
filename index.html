@@ -63,7 +63,7 @@ start.addEventListener("click", () => {
         guesses.innerHTML = guessLeft;
         let guessedNum = userNum.value;
         
-        if(guessLeft == 0 && guessedNum == randomNum){
+        if(guessedNum == randomNum){
             info.innerHTML = "You Won! Show This Screen to the Barista to Claim your Reward.";
             won();
 
