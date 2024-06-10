@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description"
+         content="A Simple Number Guessing Game. You will given 6 Chances to Guess a number between 1 to 100"
+         >
+        <meta name="keywords" content=", game, number guessing, number game">
+        <meta name="author" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href=./public/css/all.min.css />
+        <link rel="stylesheet" href="./public/css/style.css">
+        <title>Number Guessing</title>
+    </head>
+<body>
+    
+    <div class="container">
+        <div class="livesRemaining">
+            Guess Remaining : <span id="guessLeft">5</span>
+        </div>
+        <div class="content">
+
+            <h1>Number Guessing Game</h1>
+            <button id="start" class="btn">Start</button>
+            <div class="box">
+                <form>
+                    <input type="number" id="userNum" min="1" max="10" placeholder="1 - 10">
+                    <input type="submit" value="Check" id="Submit" class="btn">
+                    <br>
+                    <button id="restart" class="btn">Play Again</button>
+                </form>
+            </div>
+            <p id="info">Guess the number between 1 and 10 <br> All the best!</p>
+        </div>
+    </div>
+
+    <footer>
+        
+      </footer>
+
+
+	<script type="text/javascript">
+
+const start = document.querySelector("#start");
+const form = document.querySelector("form");
+const submit = document.querySelector("#Submit");
+const userNum  = document.querySelector("#userNum");
+const info = document.querySelector("#info");
+const guesses = document.querySelector("#guessLeft");
+const playAgain = document.querySelector("#restart");
+const body = document.querySelector("body");
+
+let guessLeft = 5;
+start.addEventListener("click", () => {
+    form.style.display = "flex";
+    start.style.display = "none";
+    const randomNum = parseInt(((Math.random() * 9)+1));
+
+    // after submitting
+    submit.addEventListener("click", (e) => {
+        e.preventDefault();
+        guessLeft --;
+        guesses.innerHTML = guessLeft;
+        let guessedNum = userNum.value;
+        
+        if(guessLeft == 0 && guessedNum == randomNum){
+            info.innerHTML = "You Won!";
+            won();
+
+        }else if(guessLeft == 0){
+            alert(`You lost, the number was ${randomNum}`);
+            window.location.href = '1.html';
+        }
+        if(guessedNum.length == 0){
+            info.innerHTML = "Type some number, you are wasting your guesses.";
+        /*}else if(guessedNum == randomNum){
+            info.innerHTML = "You Won! Show This Screen to the Barista to Claim your Reward";
+            won();*/
+        }else if(guessedNum > randomNum){
+            info.innerHTML = `Wrong, aim for some lower number. <br> Only ${guessLeft} Guesses are left.`;
+        }else if(guessedNum < randomNum){
+            info.innerHTML = `Wrong, aim for some higher number. <br> Only ${guessLeft} Guesses are left.`;
+        } 
+    });
+});
+
+won = () => {
+    restart.style.display = "block";
+    userNum.style.display = "none";
+    submit.style.display = "none";
+    body.classList.add("youWon");
+}
+
+/*function redirectToPage() {
+    window.location.href = '1.html';
+}*/
+    
+playAgain.addEventListener("click", () => {
+    window.location.href = '1.html';
+});
+</script>
+
+
+</body>
+</html>
