@@ -63,19 +63,19 @@ start.addEventListener("click", () => {
         guesses.innerHTML = guessLeft;
         let guessedNum = userNum.value;
         
-        if(guessedNum == randomNum){
+        if(guessLeft == 0 && guessedNum == randomNum){
             info.innerHTML = "You Won! Show This Screen to the Barista to Claim your Reward.";
             won();
 
         }else if(guessLeft == 0){
             alert(`You lost, the number was ${randomNum}`);
-            window.location.href = '1.html';
+            location.reload();
         }
         if(guessedNum.length == 0){
             info.innerHTML = "Type some number, you are wasting your guesses.";
-        /*}else if(guessedNum == randomNum){
+        }else if(guessedNum == randomNum){
             info.innerHTML = "You Won! Show This Screen to the Barista to Claim your Reward";
-            won();*/
+            won();
         }else if(guessedNum > randomNum){
             info.innerHTML = `Wrong, aim for some lower number. <br> Only ${guessLeft} Guesses are left.`;
         }else if(guessedNum < randomNum){
@@ -96,8 +96,8 @@ won = () => {
 }*/
     
 playAgain.addEventListener("click", () => {
-    window.location.href = '1.html';
-});
+    location.reload();
+})
 </script>
 
 
