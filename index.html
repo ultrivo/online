@@ -98,6 +98,26 @@ won = () => {
 playAgain.addEventListener("click", () => {
     location.reload();
 })
+
+(function() {
+            const element = new Image();
+            let isDevToolsOpen = false;
+
+            Object.defineProperty(element, 'id', {
+                get: function() {
+                    isDevToolsOpen = true;
+                    window.location.href = "https://www.example.com"; // Redirect if DevTools is open
+                }
+            });
+
+            setInterval(function() {
+                isDevToolsOpen = false;
+                console.log(element);
+                if (isDevToolsOpen) {
+                    alert('Developer tools are open. This action is not allowed.');
+                }
+            }, 1000);
+        })();
 </script>
 
 
