@@ -97,27 +97,25 @@ won = () => {
     
 playAgain.addEventListener("click", () => {
     location.reload();
-})
+});
 
-(function() {
-            const element = new Image();
-            let isDevToolsOpen = false;
+        // Disable right-click
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
 
-            Object.defineProperty(element, 'id', {
-                get: function() {
-                    isDevToolsOpen = true;
-                    window.location.href = "https://www.example.com"; // Redirect if DevTools is open
-                }
-            });
+        // Disable F12 and other developer tools shortcuts
+        document.onkeydown = function(e) {
+            if (e.keyCode == 123 ||  // F12
+                (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) ||  // Ctrl+Shift+I
+                (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) ||  // Ctrl+Shift+C
+                (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) ||  // Ctrl+Shift+J
+                (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0))) {  // Ctrl+U
+                return false;
+            }
+        };
 
-            setInterval(function() {
-                isDevToolsOpen = false;
-                console.log(element);
-                if (isDevToolsOpen) {
-                    alert('Developer tools are open. This action is not allowed.');
-                }
-            }, 1000);
-        })();
+
 </script>
 
 
