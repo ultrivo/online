@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Belleza&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<style type="text/css">
+body {
+    background-color: #f5e3c6;
+    font-family: 'Roboto', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.exit-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.e-col.e-col-8 {
+    flex-basis: 66.67%;
+    padding: 25px;
+}
+
+.e-col.e-col-4 {
+    flex-basis: 33.33%;
+}
+
+#exit-popup {
+    display: none; 
+	max-width: 900px;
+    width: 100%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    text-align: center;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.25);
+}
+
+#exit-popup img {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+}
+
+.exit-content {
+    max-width: 480px;
+    margin: auto;
+}
+
+#exit-popup h2 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: #2c2c2c;
+}
+
+#exit-popup p {
+    font-family: 'Belleza', sans-serif;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: #5e5e5e;
+}
+
+.btn {
+    padding: 20px 25px;
+    background-color: #FF0000;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+#exit-popup-close {
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    right: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 2.5em;
+    opacity: .45;
+}
+
+#exit-popup-close:hover {
+    opacity: 1;
+}
+
+</style>
+
+
+<div id="exit-popup">
+	<div class="exit-inner">
+		<div class="exit-row">
+			<div class="e-col e-col-8">
+				<div class="exit-content">
+					<h2>Found an item related to your cart. Play a quick mini game for a chance to get up to <span style="color:#FF0000 ">10% percent off this item</span></h2>
+					<p>Play a quick mini game and if you win you get can get 10% of this item</p>
+					<button onclick="redirectToPage()" class="btn">Play Now</button>
+
+					<button id="exit-popup-close">&#215;</button> 
+				</div>
+			</div>
+			<div class="e-col e-col-4">
+				<img src="product.jpg" alt="product">
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+const exitPopup = document.getElementById("exit-popup");
+const exitPopupClose = document.getElementById("exit-popup-close");
+
+const hideExitPopup = () => exitPopup.style.display = "none";
+const showExitPopup = () => exitPopup.style.display = "block";
+
+document.addEventListener("mouseleave", showExitPopup);
+exitPopupClose.addEventListener("click", hideExitPopup);
+
+function redirectToPage() {
+    window.location.href = 'GuessingGame.html';
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discount Code Expiration</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+    #discount-code {
+      font-size: 1.5em;
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px; /* Add space below each div */
+    }
+    #expiration-timer {
+      font-size: 1.2em;
+      color: #777;
+      text-align: center; /* Text within this div is already centered */
+      margin-bottom: 20px; /* Add space below each div */
+    }
+  </style>
+</head>
+<body>
+
+<div id="discount-code">Your discount code: <strong>DISCOUNT123</strong></div>
+<div id="expiration-timer">
+  <p style="text-align: center;"><br><br>Expires In: <span id="countdown">1:00:00</span></p>
+</div>
+
+<script>
+  // Set the expiration time in seconds (1 hour = 3600 seconds)
+  let expirationTime = 3600;
+
+  // Function to update the expiration timer
+  function updateExpirationTimer() {
+    // Calculate hours, minutes, and seconds
+    let hours = Math.floor(expirationTime / 3600);
+    let minutes = Math.floor((expirationTime % 3600) / 60);
+    let seconds = expirationTime % 60;
+
+    // Format the time
+    hours = hours < 10 ? '0' + hours : hours;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+
+    // Display the formatted time
+    document.getElementById('countdown').textContent = hours + ':' + minutes + ':' + seconds;
+
+    // Decrease the expiration time
+    expirationTime--;
+
+    // If expiration time is over, display expired message
+    if (expirationTime < 0) {
+      clearInterval(expirationInterval);
+      document.getElementById('expiration-timer').textContent = "This discount code has expired.";
+    }
+  }
+
+  // Update the expiration timer every second
+  let expirationInterval = setInterval(updateExpirationTimer, 1000);
+
+  // Initial call to display the starting time
+  updateExpirationTimer();
+</script>
+
+</body>
+</html>
